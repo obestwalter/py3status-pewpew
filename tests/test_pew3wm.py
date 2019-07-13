@@ -5,7 +5,6 @@ from pew3wm import pew3wm as mut
 
 log = logging.getLogger(__name__)
 
-log.debug("testing")
 
 def test_sanity():
     assert True
