@@ -1,0 +1,13 @@
+image: "python:3.6"
+
+before_script:
+  - python --version
+  - pip install -r requirements.txt
+
+stages:
+  - Tox
+
+tox:
+  stage: Tox
+  script:
+  - tox
