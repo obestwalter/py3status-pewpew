@@ -1,3 +1,5 @@
+import os
+
 import evdev
 import logging
 
@@ -5,7 +7,7 @@ log = logging.getLogger(__name__)
 DEVICE_NAME = "PewPew"
 
 
-def main():
+def cli():
     init()
     pewPewPath = find_pew_pew_path()
     pewPew = evdev.InputDevice(pewPewPath)
@@ -26,4 +28,4 @@ def init():
 
 
 if __name__ == '__main__':
-    main()
+    cli()
