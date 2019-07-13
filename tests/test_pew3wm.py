@@ -11,7 +11,6 @@ def test_sanity():
 
 
 def test_path_finder():
-    log.debug("testing")
     path = mut.find_pew_pew_path()
     print(f'Path is {path}')
     assert ['test'] == mut.find_pew_pew_path
