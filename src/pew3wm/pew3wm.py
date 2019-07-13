@@ -1,7 +1,6 @@
-import os
+import logging
 
 import evdev
-import logging
 
 log = logging.getLogger(__name__)
 DEVICE_NAME = "PewPew"

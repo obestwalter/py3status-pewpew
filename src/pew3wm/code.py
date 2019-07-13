@@ -13,5 +13,4 @@ while True:
             pix = pew.Pix.from_text(ux)
             screen.blit(pix, 0, 2)
     pew.show(screen)
-    pew.tick(1/12)
-
+    pew.tick(1 / 12)
