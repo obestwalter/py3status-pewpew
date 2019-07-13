@@ -1,5 +1,7 @@
 # pew3wm
 
+[![Travis CI status](https://api.travis-ci.org/obestwalter/pew3wm.png)](https://travis-ci.org/obestwalter/pew3wm)
+
 aims:
 
 * read button presses from a PewPew and use it to control i3wm
