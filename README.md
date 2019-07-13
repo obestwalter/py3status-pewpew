@@ -35,4 +35,4 @@ $ cd </path/to/this/repo>
 $ tox -e dev
 ```
 
-... and activate it.
+... and activate it e.g via `source .tox/dev/bin/activate`. Then run tests with `pytest`.
