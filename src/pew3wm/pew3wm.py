@@ -19,7 +19,7 @@ def find_pew_pew_path():
     devices = [evdev.InputDevice(fn) for fn in evdev.list_devices()]
     for device in devices:
         if DEVICE_NAME in device.name:
-            log.debug(f"found {device.name} at {device.fn} ({device.phys})" )
+            log.debug(f"found {device.name} at {device.fn} ({device.phys})")
             return device
 
 
@@ -27,5 +27,5 @@ def init():
     logging.basicConfig(level=logging.DEBUG)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cli()

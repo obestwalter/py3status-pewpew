@@ -1,13 +1,18 @@
 import evdev
 
 ACTION_EVENT = 1
+AXIS_EVENT = 3
+
 BUTTON_K_0 = 304
 BUTTON_K_1 = 305
-AXIS_VERTICAL = 1
 
+AXIS_VERTICAL = 1
 AXIS_HORIZONTAL = 0
 
-AXIS_EVENT = 3
+
+def set_state(state):
+    print(state)
+
 
 devices = [evdev.InputDevice(fn) for fn in evdev.list_devices()]
 for device in devices:
@@ -18,10 +23,6 @@ else:
     raise Exception("No valid input")
 
 device = evdev.InputDevice(device.path)
-
-
-def set_state(state):
-    print(state)
 
 
 for event in device.read_loop():
@@ -41,4 +42,3 @@ for event in device.read_loop():
             set_state("K0")
         elif event.code == BUTTON_K_1 and event.value == 1:
             set_state("K1")
-
