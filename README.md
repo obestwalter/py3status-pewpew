@@ -48,3 +48,7 @@ Starting from [this gist](https://gist.github.com/hbrylkowski/3ea9c65b672748b4f6
 
 This works when setting the pewpew to the gamepad mode (doing this directly on the pewpew).
 
+Debugging hints:
+
+    $ screen /dev/ttyACM0   # open a screen session. May need to reboot and/or hit Ctrl+C if are not greeted by a welcome message
+
