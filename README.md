@@ -1,5 +1,7 @@
 # pew3wm
 
+A [py3status](https://github.com/ultrabug/py3status) module using the PewPew hardware.
+
 [![Travis CI status](https://api.travis-ci.org/obestwalter/pew3wm.png)](https://travis-ci.org/obestwalter/pew3wm)
 
 ## aims
