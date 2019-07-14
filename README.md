@@ -13,13 +13,7 @@ We wish:
 
     $ pip install py3status-pewpew
 
-But at the moment, clone repo and `tox -e deploy`dst_path
-dst_path
-dst_path
-dst_path
-dst_path
-dst_path
-dst_path :)
+But at the moment, clone repo and `tox -e deploy` :)
 
 
 # testing
