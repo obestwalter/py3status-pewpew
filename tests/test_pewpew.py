@@ -1,6 +1,6 @@
 import logging
 
-from pew3wm import pew3wm as mut
+from pew3wm import pewpew
 
 
 log = logging.getLogger(__name__)
@@ -8,9 +8,3 @@ log = logging.getLogger(__name__)
 
 def test_sanity():
     assert True
-
-
-def test_path_finder():
-    path = mut.find_pew_pew_path()
-    print(f'Path is {path}')
-    assert ['test'] == mut.find_pew_pew_path
