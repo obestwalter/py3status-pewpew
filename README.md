@@ -7,15 +7,14 @@
 * read button presses from a PewPew and use it to control i3wm
 * display workspace on PewPew display
 
-## Uses
+## install
 
-[python-evdev](https://python-evdev.readthedocs.io/en/latest/index.html)
+We wish:
 
-experimenting with controlling i3wm with pewpew and creating a py3status module for it.
+$ pip install py3status-pewpew
 
-Starting from [this gist](https://gist.github.com/hbrylkowski/3ea9c65b672748b4f6a85074dd6ee311) to get the button events
+But at the moment, clone repo and tox -e deploy :)
 
-This works when setting the pewpew to the gamepad mode (doing this directly on the pewpew).
 
 # testing
 
@@ -36,3 +35,14 @@ $ tox -e dev
 ```
 
 ... and activate it e.g via `source .tox/dev/bin/activate`. Then run tests with `pytest`.
+
+# random
+
+[python-evdev](https://python-evdev.readthedocs.io/en/latest/index.html)
+
+experimenting with controlling i3wm with pewpew and creating a py3status module for it.
+
+Starting from [this gist](https://gist.github.com/hbrylkowski/3ea9c65b672748b4f6a85074dd6ee311) to get the button events
+
+This works when setting the pewpew to the gamepad mode (doing this directly on the pewpew).
+
