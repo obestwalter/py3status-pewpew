@@ -7,10 +7,13 @@ log = logging.getLogger(__name__)
 
 
 def test_sanity():
-    assert True
+    assert PewPewEvents
 
 
-def test_path_finder():
-    path = PewPewEvents.get_pewpew_device()
-    print(f"Path is {path}")
-    assert ["test"] == "WHATEVER"
+def test_pewpew_behaviour():
+    class FakeParent:
+        def __init__(self):
+            self.py3 = {}
+
+    parent = FakeParent()
+    PewPewEvents(parent)

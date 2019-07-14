@@ -63,7 +63,6 @@ class PewPewEvents(threading.Thread):
     def __init__(self, parent):
         super(PewPewEvents, self).__init__()
         self.parent = parent
-        self.py3.log("BOOOM")
 
     def _set_state(self, state):
         self.state = state
