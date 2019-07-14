@@ -9,21 +9,18 @@ MODULE_NAME = "code.py"
 
 
 def main():
-    if len(sys.argv) > 1:
-        containerPath = Path(sys.argv[1])
-    else:
-        user = getpass.getuser()
-        containerPath = Path(f"/run/media/{user}/CIRCUITPY")
-    assert containerPath.exists(), containerPath
-    srcPath = HERE / MODULE_NAME
-    dstPath = containerPath / MODULE_NAME
-    print(f"deploy control module to {srcPath}")
-    if dstPath.exists():
-        backupPath = dstPath.with_suffix(".bak")
-        print(f"move existing {dstPath} to {backupPath}")
-        dstPath.rename(backupPath)
-    shutil.copy(srcPath, dstPath)
-    print(f"deployed control module to {dstPath}")
+    user = getpass.getuser()
+    container_path = Path(f"/run/media/{user}/CIRCUITPY")
+    assert container_path.exists(), f"Expected pewpew at {container_path}; check cable!"
+    src_path = HERE / MODULE_NAME
+    dst_path = container_path / MODULE_NAME
+    print(f"deploy control module to {src_path}")
+    if dst_path.exists():
+        backup_path = dst_path.with_suffix(".bak")
+        print(f"move existing {dst_path} to {backup_path}")
+        dst_path.rename(backup_path)
+    shutil.copy(src_path, dst_path)
+    print(f"deployed control module to {dst_path}")
 
 
 if __name__ == "__main__":
