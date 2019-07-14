@@ -5,6 +5,6 @@ setup(
     packages=find_packages(where="src"),
     install_requires=["evdev", "pyserial"],
     package_dir={"": "src"},
-    extras_require={"lint": ["pre-commit"], "test": ["pytest"]},
+    extras_require={"lint": ["pre-commit"], "test": ["pytest", "py3status"]},
     entry_points={"console_scripts": ["pew3wm = pew3wm.pew3wm:cli"]},
 )
