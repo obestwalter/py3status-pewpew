@@ -1,11 +1,9 @@
+import struct
+import time
+
 import pew
 import supervisor
-
-import board
-import struct
 import usb_hid
-import pew
-import time
 
 pew.init()
 screen = pew.Pix()
