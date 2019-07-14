@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-PewPew + py3status = <3
+Control i3wm with the PewPew (https://pewpew.readthedocs.io).
 
 This py3status module displays the current i3 workspace
 on a PewPew device, and make use of the buttons for various
@@ -27,12 +27,13 @@ Configuration parameters:
 Format placeholders:
     {state} name of the latest pressed button
 
-@authors <your full name> <your email address>
+@authors <the EuroPython py3status pewpew> <xxx>
 @license BSD
 
 SAMPLE OUTPUT
 {'color': '#00FF00', 'full_text': '⎐'}
 """
+import logging
 
 import json
 import threading
@@ -50,6 +51,8 @@ BUTTON_K_1 = 305
 AXIS_VERTICAL = 1
 AXIS_HORIZONTAL = 0
 
+log = logging.getLogger(__name__)
+
 SERIAL_DEVICE = "/dev/ttyACM0"
 
 
@@ -60,16 +63,18 @@ class PewPewEvents(threading.Thread):
     def __init__(self, parent):
         super(PewPewEvents, self).__init__()
         self.parent = parent
+        self.py3.log("BOOOM")
 
     def _set_state(self, state):
         self.state = state
         self.parent.py3.update()
 
-    def get_pewpew_device(self):
+    @staticmethod
+    def get_pewpew_device():
         devices = [evdev.InputDevice(fn) for fn in evdev.list_devices()]
         for device in devices:
             if "PewPew" in device.name:
-                self.parent.py3.log("pewpew connected!")
+                log.info("pewpew connected!")
                 break
         else:
             raise Exception("pewpew not found")
@@ -104,7 +109,7 @@ class PewPewEvents(threading.Thread):
                 if self.state is not False:
                     device = None
                     self._set_state(False)
-                    self.parent.py3.log("pewpew disconnected!")
+                    log.info("pewpew disconnected!")
                 time.sleep(1)
 
 
