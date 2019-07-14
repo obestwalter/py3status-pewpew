@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-One-line summary followed by an empty line.
+PewPew + py3status = <3
 
-Multi-line description followed by an empty line.
+This py3status module displays the current i3 workspace
+on a PewPew device, and make use of the buttons for various
+i3 purposes. The default for buttons left and right
+is to switch workspace, but all buttons are configurable.
 
 Configuration parameters:
     button_down: List of commands to execute when DOWN button is pressed
