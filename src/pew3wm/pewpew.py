@@ -108,19 +108,18 @@ class PewPewEvents(threading.Thread):
         return list[self.device.read_loop()]
 
     def _try(self):
-        # import pdb; pdb.set_trace()
         try:
             if self.device is None:
                 self._set_device(self.get_pewpew_device())
                 self._set_state(None)
 
             for event in self._get_events():
-                event_tuple = event.type, event.code, event.value
-                new_state = event_map.get(event_tuple, None)
+                (t, c, v) = event.type, event.code, event.value
+                new_state = event_map.get((t, c, v), None)
                 if new_state is not None:
                     self._set_state(new_state)
                 else:
-                    self._say(f"Ignoring event {event_tuple}")
+                    self._say(f"Ignoring event ({t}, {c}, {v})")
 
         except Exception:
             if self.state is not False:
