@@ -114,12 +114,12 @@ class PewPewEvents(threading.Thread):
                 self._set_state(None)
 
             for event in self._get_events():
-                (t, c, v) = event.type, event.code, event.value
-                new_state = event_map.get((t, c, v), None)
+                event_tuple = event.type, event.code, event.value
+                new_state = event_map.get(event_tuple, None)
                 if new_state is not None:
                     self._set_state(new_state)
                 else:
-                    self._say(f"Ignoring event ({t}, {c}, {v})")
+                    self._say(f"Ignoring event {event_tuple}")
 
         except Exception:
             if self.state is not False:
