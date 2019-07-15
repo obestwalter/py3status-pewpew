@@ -44,72 +44,94 @@ import serial  # pyserial
 
 ACTION_EVENT = 1
 AXIS_EVENT = 3
-
-BUTTON_K_0 = 304
-BUTTON_K_1 = 305
-
-AXIS_VERTICAL = 1
 AXIS_HORIZONTAL = 0
+AXIS_VERTICAL = 1
+BUTTON_DOWN = 1
+BUTTON_K0 = 304
+BUTTON_K1 = 305
+MAJOR = 127
+MINOR = -127
 
 log = logging.getLogger(__name__)
 
 SERIAL_DEVICE = "/dev/ttyACM0"
+
+event_map = {
+    (AXIS_EVENT, AXIS_HORIZONTAL, MINOR): "LEFT",
+    (AXIS_EVENT, AXIS_HORIZONTAL, MAJOR): "RIGHT",
+    (AXIS_EVENT, AXIS_VERTICAL, MINOR): "UP",
+    (AXIS_EVENT, AXIS_VERTICAL, MAJOR): "DOWN",
+    (ACTION_EVENT, BUTTON_K0, BUTTON_DOWN): "K0",
+    (ACTION_EVENT, BUTTON_K1, BUTTON_DOWN): "K1",
+}
 
 
 class PewPewEvents(threading.Thread):
 
     state = None
 
-    def __init__(self, parent):
+    def __init__(self, parent, say=None):
         super(PewPewEvents, self).__init__()
+        # The 'say' callback is there for automatic
+        # testing purposes; see test_pewpew.py
+        if say is not None:
+            self._say = say
+
+        self._set_device(None)
         self.parent = parent
+        self._say("Initialized")
+
+    def _say(msg):
+        pass
+
+    def _set_device(self, device):
+        self._say(f"Setting device to {device}")
+        self.device = device
 
     def _set_state(self, state):
+        self._say(f"Setting state to {state}")
         self.state = state
         self.parent.py3.update()
 
-    @staticmethod
-    def get_pewpew_device():
+    def get_pewpew_device(self):
         devices = [evdev.InputDevice(fn) for fn in evdev.list_devices()]
         for device in devices:
             if "PewPew" in device.name:
                 log.info("pewpew connected!")
+                self._say("PewPew in device.name")
                 break
         else:
             raise Exception("pewpew not found")
         return evdev.InputDevice(device.path)
 
-    def run(self):
-        device = None
-        while True:
-            try:
-                if device is None:
-                    device = self.get_pewpew_device()
-                    self._set_state(None)
+    def _get_events(self):
+        return list[self.device.read_loop()]
 
-                for event in device.read_loop():
-                    if event.type == AXIS_EVENT:
-                        if event.code == AXIS_HORIZONTAL:
-                            if event.value == -127:
-                                self._set_state("LEFT")
-                            elif event.value == 127:
-                                self._set_state("RIGHT")
-                        elif event.code == AXIS_VERTICAL:
-                            if event.value == -127:
-                                self._set_state("UP")
-                            elif event.value == 127:
-                                self._set_state("DOWN")
-                    elif event.type == ACTION_EVENT:
-                        if event.code == BUTTON_K_0 and event.value == 1:
-                            self._set_state("K0")
-                        elif event.code == BUTTON_K_1 and event.value == 1:
-                            self._set_state("K1")
-            except Exception:
-                if self.state is not False:
-                    device = None
-                    self._set_state(False)
-                    log.info("pewpew disconnected!")
-                time.sleep(1)
+    def _try(self):
+        # import pdb; pdb.set_trace()
+        try:
+            if self.device is None:
+                self._set_device(self.get_pewpew_device())
+                self._set_state(None)
+
+            for event in self._get_events():
+                (t, c, v) = event.type, event.code, event.value
+                new_state = event_map.get((t, c, v), None)
+                if new_state is not None:
+                    self._set_state(new_state)
+                else:
+                    self._say(f"Ignoring event ({t}, {c}, {v})")
+
+        except Exception:
+            if self.state is not False:
+                self._set_device(None)
+                self._set_state(False)
+                log.info("pewpew disconnected!")
+            time.sleep(1)
+
+    def run(self):
+        while True:
+            self._try()
 
 
 class Py3status:
