@@ -1,22 +1,16 @@
-# pew3wm
-
-A [py3status](https://github.com/ultrabug/py3status) module using the PewPew hardware.
-
 [![Travis CI status](https://api.travis-ci.org/obestwalter/pew3wm.png)](https://travis-ci.org/obestwalter/pew3wm)
 
-## aims
+# pew3wm
 
-* read button presses from a PewPew and use it to control i3wm
-* display workspace on PewPew display
+A [py3status](https://github.com/ultrabug/py3status) module turning the [PewPew](https://pewpew.readthedocs.io) into an controller for [i3wm](https://i3wm.org/) and external workspace display.
+
+[![Watch a short demo video](https://i9.ytimg.com/vi/0Oy2CE2GZ7s/3.jpg?sqp=CNyXvekF&rs=AOn4CLCx-YqCNNjrU4dMdozSsBFtREx6KA)](https://youtu.be/0Oy2CE2GZ7s)
+
+Extend i3 with your PewPew. Use the buttons to send messages to i3 (or do whatever else you like) and always see which workspace you are on.
 
 ## install
 
-We wish:
-
-    $ pip install py3status-pewpew
-
-But at the moment, clone repo and `tox -e deploy` :)
-
+We hope to do a release on PyPi soon, but at the moment, clone repo and `tox -e deploy` :)
 
 # testing
 
@@ -38,17 +32,6 @@ $ tox -e dev
 
 ... and activate it e.g via `source .tox/dev/bin/activate`. Then run tests with `pytest`.
 
-# random
-
-[python-evdev](https://python-evdev.readthedocs.io/en/latest/index.html)
-
-experimenting with controlling i3wm with pewpew and creating a py3status module for it.
-
-Starting from [this gist](https://gist.github.com/hbrylkowski/3ea9c65b672748b4f6a85074dd6ee311) to get the button events
-
-This works when setting the pewpew to the gamepad mode (doing this directly on the pewpew).
-
-Debugging hints:
+Debugging hint - use screen to get direct access and run commands in the REPL:
 
     $ screen /dev/ttyACM0   # open a screen session. May need to reboot and/or hit Ctrl+C if are not greeted by a welcome message
-
