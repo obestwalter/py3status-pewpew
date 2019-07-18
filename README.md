@@ -2,7 +2,7 @@
 
 # pew3wm
 
-A [py3status](https://github.com/ultrabug/py3status) module turning the [PewPew](https://pewpew.readthedocs.io) into an controller for [i3wm](https://i3wm.org/) and external workspace display.
+A [py3status](https://github.com/ultrabug/py3status) module turning the [PewPew](https://pewpew.readthedocs.io) into a controller and external workspace display for the [i3wm](https://i3wm.org/) tiling window manager.
 
 [![Watch a short demo video](https://i9.ytimg.com/vi/0Oy2CE2GZ7s/3.jpg?sqp=CNyXvekF&rs=AOn4CLCx-YqCNNjrU4dMdozSsBFtREx6KA)](https://youtu.be/0Oy2CE2GZ7s)
 
