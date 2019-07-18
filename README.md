@@ -4,7 +4,7 @@
 
 A [py3status](https://github.com/ultrabug/py3status) module turning the [PewPew](https://pewpew.readthedocs.io) into an controller for [i3wm](https://i3wm.org/) and external workspace display.
 
-[![Watch a short demo video](https://i9.ytimg.com/vi/0Oy2CE2GZ7s/3.jpg?sqp=CNyXvekF&rs=AOn4CLCx-YqCNNjrU4dMdozSsBFtREx6KA)](https://youtu.be/0Oy2CE2GZ7s)
+[![Watch a short demo video](http://img.youtube.com/vi/0Oy2CE2GZ7s/0.jpg)](http://www.youtube.com/watch?v=0Oy2CE2GZ7s "pew3wm status controller")
 
 Extend i3 with your PewPew. Use the buttons to send messages to i3 (or do whatever else you like) and always see which workspace you are on.
 
