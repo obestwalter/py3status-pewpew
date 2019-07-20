@@ -1,11 +1,10 @@
-# Standard
+# coding: utf-8
 import getpass
 import grp
 import logging
 import os
 import shutil
 
-# Cheese shop
 from pathlib import Path
 
 
