@@ -18,31 +18,27 @@ PY3STATUS_CONFIG_PATH = ""
 def main():
     logging.basicConfig(level=logging.DEBUG)
     warn_if_user_not_in_expected_groups()
-    containerPath = find_container_path()
-    if containerPath is None:
-        raise Exception("Could not find pewpew; check cable!")
-    deploy_pew_pew_control_module(containerPath)
+    deploy_pew_pew_control_module()
     deploy_py3status_module()
 
 
-def first_existing(candidates):
-    for candidate in candidates:
-        print("Checking {}".format(candidate))
-        if candidate.exists():
-            return candidate
-    return None
-
-
-def find_container_path():
+def warn_if_user_not_in_expected_groups():
+    expected_groups_by_distro = {
+        'arch': ['uucp'],
+        'ubuntu': ['input', 'dialout'],
+    }
+    expected_groups = expected_groups_by_distro[distro.id()]
     user = getpass.getuser()
-    candidates = [
-        Path(f"/run/media/{user}/CIRCUITPY"),
-        Path(f"/media/{user}/CIRCUITPY"),
-    ]
-    return first_existing(candidates)
+    groups = [g.gr_name for g in grp.getgrall() if user in g.gr_mem]
+    for exp_group in expected_groups:
+        if exp_group not in groups:
+            logger.info(f"Warning: user '{user}' is not in expected group: '{exp_group}'")
 
 
-def deploy_pew_pew_control_module(containerPath):
+def deploy_pew_pew_control_module():
+    containerPath = find_container_path()
+    if containerPath is None:
+        raise Exception("Could not find pewpew; check cable!")
     assert containerPath.exists(), containerPath
     srcPath = HERE / MODULE_NAME
     dstPath = containerPath / MODULE_NAME
@@ -71,17 +67,21 @@ def deploy_py3status_module():
         raise Exception(f"Could not find a home for {MODULE_NAME}")
 
 
-def warn_if_user_not_in_expected_groups():
-    expected_groups_by_distro = {
-        'arch': ['uucp'],
-        'ubuntu': ['input', 'dialout'],
-    }
-    expected_groups = expected_groups_by_distro[distro.id()]
+def first_existing(candidates):
+    for candidate in candidates:
+        print("Checking {}".format(candidate))
+        if candidate.exists():
+            return candidate
+    return None
+
+
+def find_container_path():
     user = getpass.getuser()
-    groups = [g.gr_name for g in grp.getgrall() if user in g.gr_mem]
-    for exp_group in expected_groups:
-        if exp_group not in groups:
-            logger.info(f"Warning: user '{user}' is not in expected group: '{exp_group}'")
+    candidates = [
+        Path(f"/run/media/{user}/CIRCUITPY"),
+        Path(f"/media/{user}/CIRCUITPY"),
+    ]
+    return first_existing(candidates)
 
 
 if __name__ == "__main__":
