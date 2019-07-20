@@ -21,7 +21,6 @@ def first_existing(candidates):
         print("Checking {}".format(candidate))
         if candidate.exists():
             return candidate
-        else:
     return None
 
 
