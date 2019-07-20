@@ -29,9 +29,7 @@ def warn_if_user_not_in_expected_groups():
     groups = [g.gr_name for g in grp.getgrall() if user in g.gr_mem]
     for exp_group in expected_groups:
         if exp_group not in groups:
-            logger.info(
-                f"Warning: user '{user}' is not in expected group: '{exp_group}'"
-            )
+            log.info(f"Warning: user '{user}' is not in expected group: '{exp_group}'")
 
 
 def deploy_pew_pew_control_module():
