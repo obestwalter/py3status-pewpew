@@ -21,10 +21,6 @@ log = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
 
 
-def test_sanity():
-    assert PewPewEvents
-
-
 def test_pewpew_behaviour():
     class FakeParent:
         def __init__(self):
