@@ -69,7 +69,7 @@ def deploy_py3status_module():
         log.info(f"deploy py3status module {PY3STATUS_MODULE_PATH} to {path}")
         shutil.copy(PY3STATUS_MODULE_PATH, path)
     else:
-        raise Exception("Could not find a home for {}".format(MODULE_NAME))
+        raise Exception(f"Could not find a home for {MODULE_NAME}")
 
 
 def warn_if_user_not_in_expected_groups():
@@ -78,7 +78,7 @@ def warn_if_user_not_in_expected_groups():
     expected_groups = ['input', 'dialout']
     for exp_group in expected_groups:
         if exp_group not in groups:
-            print("Warning: user '{}' is not in expected group: '{}'".format(user, exp_group))
+            print("Warning: user '{user}' is not in expected group: '{exp_group}'")
 
 
 if __name__ == "__main__":
