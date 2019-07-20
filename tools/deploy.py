@@ -5,8 +5,8 @@ import logging
 import os
 import shutil
 
+import distro
 from pathlib import Path
-
 
 log = logging.getLogger(__name__)
 HERE = Path(__file__).parent
@@ -72,12 +72,16 @@ def deploy_py3status_module():
 
 
 def warn_if_user_not_in_expected_groups():
+    expected_groups_by_distro = {
+        'arch': ['uucp'],
+        'ubuntu': ['input', 'dialout'],
+    }
+    expected_groups = expected_groups_by_distro[distro.id()]
     user = getpass.getuser()
     groups = [g.gr_name for g in grp.getgrall() if user in g.gr_mem]
-    expected_groups = ['input', 'dialout']
     for exp_group in expected_groups:
         if exp_group not in groups:
-            print("Warning: user '{user}' is not in expected group: '{exp_group}'")
+            logger.info(f"Warning: user '{user}' is not in expected group: '{exp_group}'")
 
 
 if __name__ == "__main__":
