@@ -14,8 +14,8 @@ We hope to do a release on PyPi soon, but at the moment, clone repo and `tox -e 
 
 Make sure your user is part of the 'input' and 'dialout' groups if you are on Ubuntu, this is for evdev to be able to read the buttons:
 
-   $ sudo usermod -a -G dialout `whoami`
-   $ sudo usermod -a -G input `whoami`
+    $ sudo usermod -a -G dialout `whoami`
+    $ sudo usermod -a -G input `whoami`
 
 # testing
 
