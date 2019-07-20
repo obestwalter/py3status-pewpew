@@ -16,6 +16,16 @@ PY3STATUS_MODULE_PATH = HERE.parent / "src" / "pew3wm" / "pewpew.py"
 PY3STATUS_CONFIG_PATH = ""
 
 
+def main():
+    logging.basicConfig(level=logging.DEBUG)
+    warn_if_user_not_in_expected_groups()
+    containerPath = find_container_path()
+    if containerPath is None:
+        raise Exception("Could not find pewpew; check cable!")
+    deploy_pew_pew_control_module(containerPath)
+    deploy_py3status_module()
+
+
 def first_existing(candidates):
     for candidate in candidates:
         print("Checking {}".format(candidate))
@@ -69,16 +79,6 @@ def warn_if_user_not_in_expected_groups():
     for exp_group in expected_groups:
         if exp_group not in groups:
             print("Warning: user '{}' is not in expected group: '{}'".format(user, exp_group))
-
-
-def main():
-    logging.basicConfig(level=logging.DEBUG)
-    warn_if_user_not_in_expected_groups()
-    containerPath = find_container_path()
-    if containerPath is None:
-        raise Exception("Could not find pewpew; check cable!")
-    deploy_pew_pew_control_module(containerPath)
-    deploy_py3status_module()
 
 
 if __name__ == "__main__":
