@@ -9,6 +9,7 @@ import distro
 from pathlib import Path
 
 log = logging.getLogger(__name__)
+logging.basicConfig(level=logging.DEBUG)
 HERE = Path(__file__).parent
 MODULE_NAME = "code.py"
 PY3STATUS_MODULE_PATH = HERE.parent / "src/pew3wm/pewpew.py"
@@ -16,7 +17,6 @@ PY3STATUS_CONFIG_PATH = ""
 
 
 def main():
-    logging.basicConfig(level=logging.DEBUG)
     warn_if_user_not_in_expected_groups()
     deploy_pew_pew_control_module()
     deploy_py3status_module()
