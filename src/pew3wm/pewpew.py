@@ -81,7 +81,7 @@ class PewPewEvents(threading.Thread):
         self.parent = parent
         self._say("Initialized")
 
-    def _say(msg):
+    def _say(self, msg):
         pass
 
     def _set_device(self, device):
