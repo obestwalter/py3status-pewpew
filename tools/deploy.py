@@ -1,7 +1,11 @@
+# Standard
 import getpass
+import grp
 import logging
 import os
 import shutil
+
+# Cheese shop
 from pathlib import Path
 
 
@@ -14,8 +18,10 @@ PY3STATUS_CONFIG_PATH = ""
 
 def first_existing(candidates):
     for candidate in candidates:
+        print("Checking {}".format(candidate))
         if candidate.exists():
             return candidate
+        else:
     return None
 
 
@@ -26,15 +32,6 @@ def find_container_path():
         Path(f"/media/{user}/CIRCUITPY"),
     ]
     return first_existing(candidates)
-
-
-def main():
-    logging.basicConfig(level=logging.DEBUG)
-    containerPath = find_container_path()
-    if containerPath is None:
-        raise Exception("Could not find pewpew; check cable!")
-    deploy_pew_pew_control_module(containerPath)
-    deploy_py3status_module()
 
 
 def deploy_pew_pew_control_module(containerPath):
@@ -63,7 +60,27 @@ def deploy_py3status_module():
         log.info(f"deploy py3status module {PY3STATUS_MODULE_PATH} to {path}")
         shutil.copy(PY3STATUS_MODULE_PATH, path)
     else:
-        raise Exception("Could not find a home for pewpew")
+        raise Exception("Could not find a home for {}".format(MODULE_NAME))
+
+
+def warn_if_user_not_in_expected_groups():
+    user = getpass.getuser()
+    groups = [g.gr_name for g in grp.getgrall() if user in g.gr_mem]
+    groups = []
+    expected_groups = ['input', 'dialout']
+    for exp_group in expected_groups:
+        if exp_group not in groups:
+            print("Warning: user '{}' is not in expected group: '{}'".format(user, exp_group))
+
+
+def main():
+    logging.basicConfig(level=logging.DEBUG)
+    containerPath = find_container_path()
+    if containerPath is None:
+        raise Exception("Could not find pewpew; check cable!")
+    warn_if_user_not_in_expected_groups()
+    deploy_pew_pew_control_module(containerPath)
+    deploy_py3status_module()
 
 
 if __name__ == "__main__":
