@@ -32,7 +32,7 @@ def main():
     logging.basicConfig(level=logging.DEBUG)
     containerPath = find_container_path()
     if containerPath is None:
-        raise ("Could not find pewpew; check cable!")
+        raise Exception("Could not find pewpew; check cable!")
     deploy_pew_pew_control_module(containerPath)
     deploy_py3status_module()
 
