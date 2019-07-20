@@ -72,8 +72,6 @@ class PewPewEvents(threading.Thread):
 
     def __init__(self, parent, say=None):
         super(PewPewEvents, self).__init__()
-        # The 'say' callback is there for automatic
-        # testing purposes; see test_pewpew.py
         if say is not None:
             self._say = say
 
@@ -81,6 +79,8 @@ class PewPewEvents(threading.Thread):
         self.parent = parent
         self._say("Initialized")
 
+    # The 'say' function is here for automatic
+    # testing purposes; see test_pewpew.py
     def _say(self, msg):
         pass
 

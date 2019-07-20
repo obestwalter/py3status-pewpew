@@ -18,6 +18,7 @@ from pew3wm.pewpew import (
 event = namedtuple("event", ["type", "code", "value"])
 
 log = logging.getLogger(__name__)
+logging.basicConfig(level=logging.DEBUG)
 
 
 def test_sanity():
