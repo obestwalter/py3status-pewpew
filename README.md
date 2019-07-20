@@ -16,6 +16,7 @@ Make sure your user is part of the 'input' and 'dialout' groups if you are on Ub
 
     $ sudo usermod -a -G dialout `whoami`
     $ sudo usermod -a -G input `whoami`
+    $ groups   # should return list containing both groups; you may need to logout for the changes to apply)
 
 # testing
 
