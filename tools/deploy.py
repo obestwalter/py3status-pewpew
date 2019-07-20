@@ -61,7 +61,7 @@ def deploy_py3status_module():
     candidates = [
         configHomePath / ".config/py3status/modules",
         configHomePath / ".config/i3status/py3status",
-        configHomePath / ".confi`g/i3/py3status",
+        configHomePath / ".config/i3/py3status",
         configHomePath / ".i3/py3status",
     ]
     path = first_existing(candidates)
