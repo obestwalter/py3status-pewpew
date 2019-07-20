@@ -47,6 +47,7 @@ def deploy_pew_pew_control_module(containerPath):
         print(f"move existing {dstPath} to {backupPath}")
         dstPath.rename(backupPath)
     shutil.copy(srcPath, dstPath)
+    assert srcPath.read_bytes() == dstPath.read_bytes(), "Target != Source; deploy fail?"
     print(f"deployed control module to {dstPath}")
 
 
