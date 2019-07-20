@@ -74,10 +74,10 @@ def warn_if_user_not_in_expected_groups():
 
 def main():
     logging.basicConfig(level=logging.DEBUG)
+    warn_if_user_not_in_expected_groups()
     containerPath = find_container_path()
     if containerPath is None:
         raise Exception("Could not find pewpew; check cable!")
-    warn_if_user_not_in_expected_groups()
     deploy_pew_pew_control_module(containerPath)
     deploy_py3status_module()
 
