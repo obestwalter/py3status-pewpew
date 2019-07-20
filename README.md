@@ -12,6 +12,11 @@ Extend i3 with your PewPew. Use the buttons to send messages to i3 (or do whatev
 
 We hope to do a release on PyPi soon, but at the moment, clone repo and `tox -e deploy` :)
 
+Make sure your user is part of the 'input' and 'dialout' groups if you are on Ubuntu, this is for evdev to be able to read the buttons:
+
+   $ sudo usermod -a -G dialout `whoami`
+   $ sudo usermod -a -G input `whoami`
+
 # testing
 
 run the tests with tox:
