@@ -65,7 +65,6 @@ def deploy_py3status_module():
 def warn_if_user_not_in_expected_groups():
     user = getpass.getuser()
     groups = [g.gr_name for g in grp.getgrall() if user in g.gr_mem]
-    groups = []
     expected_groups = ['input', 'dialout']
     for exp_group in expected_groups:
         if exp_group not in groups:
