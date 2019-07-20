@@ -1,43 +1,41 @@
+# coding: utf-8
 import getpass
+import grp
 import logging
 import os
 import shutil
+
+import distro
 from pathlib import Path
 
-
 log = logging.getLogger(__name__)
+logging.basicConfig(level=logging.DEBUG)
 HERE = Path(__file__).parent
 MODULE_NAME = "code.py"
-PY3STATUS_MODULE_PATH = HERE.parent / "src" / "pew3wm" / "pewpew.py"
+PY3STATUS_MODULE_PATH = HERE.parent / "src/pew3wm/pewpew.py"
 PY3STATUS_CONFIG_PATH = ""
 
 
-def first_existing(candidates):
-    for candidate in candidates:
-        if candidate.exists():
-            return candidate
-    return None
-
-
-def find_container_path():
-    user = getpass.getuser()
-    candidates = [
-        Path(f"/run/media/{user}/CIRCUITPY"),
-        Path(f"/media/{user}/CIRCUITPY"),
-    ]
-    return first_existing(candidates)
-
-
 def main():
-    logging.basicConfig(level=logging.DEBUG)
-    containerPath = find_container_path()
-    if containerPath is None:
-        raise Exception("Could not find pewpew; check cable!")
-    deploy_pew_pew_control_module(containerPath)
+    warn_if_user_not_in_expected_groups()
+    deploy_pew_pew_control_module()
     deploy_py3status_module()
 
 
-def deploy_pew_pew_control_module(containerPath):
+def warn_if_user_not_in_expected_groups():
+    expected_groups_by_distro = {"arch": ["uucp"], "ubuntu": ["input", "dialout"]}
+    expected_groups = expected_groups_by_distro[distro.id()]
+    user = getpass.getuser()
+    groups = [g.gr_name for g in grp.getgrall() if user in g.gr_mem]
+    for exp_group in expected_groups:
+        if exp_group not in groups:
+            log.info(f"Warning: user '{user}' is not in expected group: '{exp_group}'")
+
+
+def deploy_pew_pew_control_module():
+    containerPath = find_container_path()
+    if containerPath is None:
+        raise Exception("Could not find pewpew; check cable!")
     assert containerPath.exists(), containerPath
     srcPath = HERE / MODULE_NAME
     dstPath = containerPath / MODULE_NAME
@@ -64,7 +62,24 @@ def deploy_py3status_module():
         log.info(f"deploy py3status module {PY3STATUS_MODULE_PATH} to {path}")
         shutil.copy(PY3STATUS_MODULE_PATH, path)
     else:
-        raise Exception("Could not find a home for pewpew")
+        raise Exception(f"Could not find a home for {MODULE_NAME}")
+
+
+def first_existing(candidates):
+    for candidate in candidates:
+        print("Checking {}".format(candidate))
+        if candidate.exists():
+            return candidate
+    return None
+
+
+def find_container_path():
+    user = getpass.getuser()
+    candidates = [
+        Path(f"/run/media/{user}/CIRCUITPY"),
+        Path(f"/media/{user}/CIRCUITPY"),
+    ]
+    return first_existing(candidates)
 
 
 if __name__ == "__main__":
