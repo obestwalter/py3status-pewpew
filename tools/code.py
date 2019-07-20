@@ -27,8 +27,8 @@ while True:
     if supervisor.runtime.serial_bytes_available:
         ux = input()
         if ux.isdigit():
-            # pew.init()
-            # screen = pew.Pix()
+            pew.init()
+            screen = pew.Pix()
             pix = pew.Pix.from_text(ux, color=3)
             if int(ux) < 10:
                 screen.blit(pix, 2, 2)
