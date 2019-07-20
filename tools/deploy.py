@@ -12,7 +12,7 @@ from pathlib import Path
 log = logging.getLogger(__name__)
 HERE = Path(__file__).parent
 MODULE_NAME = "code.py"
-PY3STATUS_MODULE_PATH = HERE.parent / "src" / "pew3wm" / "pewpew.py"
+PY3STATUS_MODULE_PATH = HERE.parent / "src/pew3wm/pewpew.py"
 PY3STATUS_CONFIG_PATH = ""
 
 
@@ -59,10 +59,10 @@ def deploy_pew_pew_control_module(containerPath):
 def deploy_py3status_module():
     configHomePath = Path(os.getenv("XDG_CONFIG_HOME", "~")).expanduser()
     candidates = [
-        configHomePath / ".config" / "py3status" / "modules",
-        configHomePath / ".config" / "i3status" / "py3status",
-        configHomePath / ".config" / "i3" / "py3status",
-        configHomePath / ".i3" / "py3status",
+        configHomePath / ".config/py3status/modules",
+        configHomePath / ".config/i3status/py3status",
+        configHomePath / ".confi`g/i3/py3status",
+        configHomePath / ".i3/py3status",
     ]
     path = first_existing(candidates)
     if path is not None:
