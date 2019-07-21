@@ -29,7 +29,7 @@ def warn_if_user_not_in_expected_groups():
     groups = [g.gr_name for g in grp.getgrall() if user in g.gr_mem]
     for exp_group in expected_groups:
         if exp_group not in groups:
-            log.info(f"Warning: user '{user}' is not in expected group: '{exp_group}'")
+            log.info(f"warning: user '{user}' is not in expected group: '{exp_group}'")
 
 
 def deploy_pew_pew_control_module():
@@ -39,14 +39,14 @@ def deploy_pew_pew_control_module():
     assert containerPath.exists(), containerPath
     srcPath = HERE / MODULE_NAME
     dstPath = containerPath / MODULE_NAME
-    print(f"deploy control module to {srcPath}")
+    print(f"deploying control module from {srcPath}...")
     if dstPath.exists():
         backupPath = dstPath.with_suffix(".bak")
         print(f"move existing {dstPath} to {backupPath}")
         dstPath.rename(backupPath)
     shutil.copy(srcPath, dstPath)
-    assert srcPath.read_bytes() == dstPath.read_bytes(), "Target != Source; deploy fail?"
-    print(f"deployed control module to {dstPath}")
+    assert srcPath.read_bytes() == dstPath.read_bytes(), "target != source; deploy fail?"
+    print(f"...deployed control module to {dstPath}")
 
 
 def deploy_py3status_module():
@@ -62,12 +62,12 @@ def deploy_py3status_module():
         log.info(f"deploy py3status module {PY3STATUS_MODULE_PATH} to {path}")
         shutil.copy(PY3STATUS_MODULE_PATH, path)
     else:
-        raise Exception(f"Could not find a home for {MODULE_NAME}")
+        raise Exception(f"could not find a home for {MODULE_NAME}")
 
 
 def first_existing(candidates):
     for candidate in candidates:
-        print("Checking {}".format(candidate))
+        print(f"checking {candidate}")
         if candidate.exists():
             return candidate
     return None
