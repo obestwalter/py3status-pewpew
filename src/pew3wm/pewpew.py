@@ -96,7 +96,7 @@ class PewPewEvents(threading.Thread):
     def get_pewpew_device(self):
         devices = [evdev.InputDevice(fn) for fn in evdev.list_devices()]
         for device in devices:
-            if "PewPew" in device.name:
+            if "PewPew" in device.name and not 'event-mouse' in device.name:
                 log.info("pewpew connected!")
                 self._say("PewPew in device.name")
                 break
