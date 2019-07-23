@@ -12,11 +12,7 @@ Extend i3 with your PewPew. Use the buttons to send messages to i3 (or do whatev
 
 We hope to do a release on PyPi soon, but at the moment, clone repo and `tox -e deploy` :)
 
-Make sure your user is part of the 'input' and 'dialout' groups if you are on Ubuntu, this is for evdev to be able to read the buttons:
-
-    $ sudo usermod -a -G dialout `whoami`
-    $ sudo usermod -a -G input `whoami`
-    $ groups   # should return list containing both groups; logout to apply changes
+See install-ubuntu16.04.md for specific instructions on that distribution.
 
 # testing
 
@@ -40,4 +36,6 @@ $ tox -e dev
 
 Debugging hint - use screen to get direct access and run commands in the REPL:
 
-    $ screen /dev/ttyACM0   # open a screen session. May need to reboot and/or hit Ctrl+C if are not greeted by a welcome message
+    $ screen /dev/ttyACM0
+
+This will open a screen session. Ctrl+C and Enter is useful to soft reboot pewpew in there.
