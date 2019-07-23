@@ -16,3 +16,6 @@ Approximate steps on how to install py3status-pewpew:
     cd ~/bin
     ln -s ~/.venvs/py3status-env/bin/py3status
     usermod -a -G input `whoami`
+    usermod -a -G input `whoami`
+    (logout and in again, plug in pewpew and power up!)
+ 
