@@ -30,6 +30,25 @@ Format placeholders:
 @authors <the EuroPython py3status pewpew> <xxx>
 @license BSD
 
+Examples:
+```
+# display the pewpew as an icon
+# show scratchpad on K0 press
+# toggle the dpms py3status module by simulating a left click on it on K1 press
+pewpew {
+    format = "⎐"
+    button_k0 = "i3-msg scratchpad show"
+    button_k1 = "py3-cmd click 1 dpms"
+}
+
+# increase or decrease the volume on UP/DOWN press by simulating clicks on the
+# volume_status module (if you have it loaded)
+pewpew {
+    button_up = "py3-cmd click 4 volume_status"
+    button_down = "py3-cmd click 5 volume_status"
+}
+```
+
 SAMPLE OUTPUT
 {'color': '#00FF00', 'full_text': '⎐'}
 """
