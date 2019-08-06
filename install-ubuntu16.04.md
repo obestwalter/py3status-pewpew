@@ -10,12 +10,12 @@ Approximate steps on how to install py3status-pewpew:
     source py3status-env/bin/activate
     pip install --upgrade pip
     pip install py3status evdev pyserial
-    git clone https://github.com/obestwalter/pew3wm
-    cd pew3wm
+    git clone https://github.com/obestwalter/py3status-pewpew
+    cd py3status-pewpew
     python setup.py install
     cd ~/bin
     ln -s ~/.venvs/py3status-env/bin/py3status
     usermod -a -G input `whoami`
     usermod -a -G dialout `whoami`
     (logout and in again, plug in pewpew and power up!)
- 
+
