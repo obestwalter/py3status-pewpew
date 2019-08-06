@@ -1,6 +1,6 @@
 import logging
 
-from pew3wm.pewpew import PewPewEvents
+from py3status-pewpew.pewpew import PewPewEvents
 
 
 log = logging.getLogger(__name__)

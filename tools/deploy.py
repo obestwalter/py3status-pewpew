@@ -12,7 +12,7 @@ log = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
 HERE = Path(__file__).parent
 MODULE_NAME = "code.py"
-PY3STATUS_MODULE_PATH = HERE.parent / "src/pew3wm/pewpew.py"
+PY3STATUS_MODULE_PATH = HERE.parent / "src/py3status-pewpew/pewpew.py"
 PY3STATUS_CONFIG_PATH = ""
 
 
