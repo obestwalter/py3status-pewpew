@@ -1,7 +1,9 @@
 py3status_pewpew.egg-info/
-.tox
+.tox/
 __pycache__
 .env/
 env/
 .venv/
 venv/
+build/
+dist/
