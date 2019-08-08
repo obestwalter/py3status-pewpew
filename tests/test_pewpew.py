@@ -1,9 +1,7 @@
 import logging
 from collections import namedtuple
 
-from py3status_pewpew.pewpew import PewPewEvents
-
-from pew3wm.pewpew import (
+from py3status_pewpew.pewpew import (
     PewPewEvents,
     ACTION_EVENT,
     AXIS_EVENT,
