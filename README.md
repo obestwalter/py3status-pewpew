@@ -1,4 +1,5 @@
 [![Travis CI status](https://api.travis-ci.org/obestwalter/py3status-pewpew.png)](https://travis-ci.org/obestwalter/py3status-pewpew)
+[![PyPI version](https://badge.fury.io/py/i3configger.svg)](https://pypi.org/project/i3configger/)
 
 # py3status-pewpew
 
