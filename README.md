@@ -10,7 +10,9 @@ Extend i3 with your PewPew. Use the buttons to send messages to i3 (or do whatev
 
 ## install
 
-We hope to do a release on PyPi soon, but at the moment, clone repo and `tox -e deploy` :)
+```text
+pip install py3status-pewpew
+```
 
 See install-ubuntu16.04.md for specific instructions on that distribution.
 
