@@ -1,0 +1,10 @@
+README.md
+setup.py
+src/py3status_pewpew/__init__.py
+src/py3status_pewpew/pewpew.py
+src/py3status_pewpew.egg-info/PKG-INFO
+src/py3status_pewpew.egg-info/SOURCES.txt
+src/py3status_pewpew.egg-info/dependency_links.txt
+src/py3status_pewpew.egg-info/entry_points.txt
+src/py3status_pewpew.egg-info/requires.txt
+src/py3status_pewpew.egg-info/top_level.txt

@@ -1,0 +1,10 @@
+distro
+evdev
+pyserial
+
+[lint]
+pre-commit
+
+[test]
+py3status
+pytest
