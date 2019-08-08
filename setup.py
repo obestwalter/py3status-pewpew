@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="py3status_pewpew",
+    name="py3status-pewpew",
     packages=find_packages(where="src"),
     install_requires=["evdev", "pyserial", "distro"],
     package_dir={"": "src"},
