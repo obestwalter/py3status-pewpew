@@ -1,3 +1,0 @@
-[py3status]
-module = py3status_pewpew.pewpew
-
