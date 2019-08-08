@@ -1,10 +1,10 @@
-[![Travis CI status](https://api.travis-ci.org/obestwalter/pew3wm.png)](https://travis-ci.org/obestwalter/pew3wm)
+[![Travis CI status](https://api.travis-ci.org/obestwalter/py3status-pewpew.png)](https://travis-ci.org/obestwalter/py3status-pewpew)
 
-# pew3wm
+# py3status-pewpew
 
 A [py3status](https://github.com/ultrabug/py3status) module turning the [PewPew](https://pewpew.readthedocs.io) into a controller and external workspace display for the [i3wm](https://i3wm.org/) tiling window manager.
 
-[![Watch a short demo video](http://img.youtube.com/vi/0Oy2CE2GZ7s/0.jpg)](http://www.youtube.com/watch?v=0Oy2CE2GZ7s "pew3wm status controller")
+[![Watch a short demo video](http://img.youtube.com/vi/0Oy2CE2GZ7s/0.jpg)](http://www.youtube.com/watch?v=0Oy2CE2GZ7s "py3status-pewpew status controller")
 
 Extend i3 with your PewPew. Use the buttons to send messages to i3 (or do whatever else you like) and always see which workspace you are on.
 

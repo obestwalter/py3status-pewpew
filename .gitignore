@@ -1,5 +1,5 @@
-pew3wm.egg-info/
-.tox/
+*.egg-info/
+.tox
 __pycache__
 .env/
 env/
