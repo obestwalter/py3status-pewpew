@@ -1,5 +1,6 @@
 import logging
 from collections import namedtuple
+from pkg_resources import parse_version
 
 from py3status_pewpew.pewpew import (
     PewPewEvents,
@@ -64,3 +65,8 @@ def test_pewpew_behaviour():
     ]
     print(said)
     assert said == expected
+
+
+def test_py3status_version():
+    import py3status.version
+    assert parse_version(py3status.version.version) >= parse_version("3.20")

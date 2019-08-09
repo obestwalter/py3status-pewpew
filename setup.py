@@ -12,12 +12,12 @@ def make_long_description():
 
 setup(
     name="py3status-pewpew",
-    version="0.1.post1",
+    version="0.2",
     description="py3status module to control i3wm with the PewPew",
     long_description=make_long_description(),
     long_description_content_type="text/markdown",
     packages=find_packages(where="src"),
-    install_requires=["evdev", "pyserial", "distro"],
+    install_requires=["py3status>=3.20", "evdev", "pyserial", "distro"],
     package_dir={"": "src"},
     extras_require={"lint": ["pre-commit"], "test": ["pytest", "py3status"]},
     entry_points={"py3status": ["module = py3status_pewpew.pewpew"]},
