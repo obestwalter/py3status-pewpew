@@ -12,7 +12,7 @@ def make_long_description():
 
 setup(
     name="py3status-pewpew",
-    version="0.2",
+    version="0.3.dev0",
     description="py3status module to control i3wm with the PewPew",
     long_description=make_long_description(),
     long_description_content_type="text/markdown",
